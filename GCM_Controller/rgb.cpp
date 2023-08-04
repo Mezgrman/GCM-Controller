@@ -105,7 +105,7 @@ void rgb_timerInterrupt() {
   digitalWrite(PIN_LATCH, LOW);
   
   // If bitCounter is a power of 2
-  if ((bitCounter & (bitCounter - 1)) == 0) {
+  if (bitCounter != 0 && (bitCounter & (bitCounter - 1)) == 0) {
     rgb_update(bitCounter);
   }
 }
