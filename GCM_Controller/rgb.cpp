@@ -103,18 +103,9 @@ void rgb_update(uint8_t blockMask) {
 void rgb_timerInterrupt() {
   bitCounter++;
   digitalWrite(PIN_LATCH, LOW);
-  switch (bitCounter) {
-    case 1:
-    case 2:
-    case 4:
-    case 8:
-    case 16:
-    case 32:
-    case 64:
-    case 128:
-      {
-        rgb_update(bitCounter);
-        break;
-      }
+  
+  // If bitCounter is a power of 2
+  if ((bitCounter & (bitCounter - 1)) == 0) {
+    rgb_update(bitCounter);
   }
 }
