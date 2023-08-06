@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "serial.h"
-#include "rgb.h"
+#include "gcm.h"
 
 
 extern uint32_t sectorColors[NUM_SECTORS];

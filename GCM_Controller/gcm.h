@@ -23,6 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NUM_SECTORS 32
 
 
-void rgb_init();
-void rgb_update(uint8_t blockMask);
-void rgb_timerInterrupt();
+void gcm_init();
+void gcm_update(uint8_t blockMask);
+void gcm_timerInterrupt();

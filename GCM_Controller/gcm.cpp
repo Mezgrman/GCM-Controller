@@ -18,12 +18,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <SPI.h>
 #include <TimerOne.h>
 
-#include "rgb.h"
+#include "gcm.h"
 
 
 // This array contains the sector colors as 24-bit hex values
 // in order from top sector (0) to bottom sector (NUM_SECTORS - 1).
-uint32_t sectorColors[NUM_SECTORS] = { 0x000000 };
+uint32_t sectorColors[NUM_SECTORS] = {
+  0xFF0000,
+  0x800000,
+  0x400000,
+  0x200000,
+  0x100000,
+  0x00FF00,
+  0x008000,
+  0x004000,
+  0x002000,
+  0x001000,
+  0x0000FF,
+  0x000080,
+  0x000040,
+  0x000020,
+  0x000010,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000,
+  0x000000
+};
 
 // Default SPI settings
 static SPISettings spiSettings(4000000UL, LSBFIRST, SPI_MODE0);
@@ -32,18 +65,18 @@ static SPISettings spiSettings(4000000UL, LSBFIRST, SPI_MODE0);
 static uint8_t bitCounter = 0;
 
 
-void rgb_init() {
+void gcm_init() {
   pinMode(PIN_LATCH, OUTPUT);
   pinMode(PIN_ENABLE, OUTPUT);
 
   digitalWrite(PIN_ENABLE, LOW);
 
   Timer1.initialize(40);  // 40 µs per bit for 25 kHz PWM and ~100 Hz update rate
-  Timer1.attachInterrupt(rgb_timerInterrupt);
+  Timer1.attachInterrupt(gcm_timerInterrupt);
   SPI.begin();
 }
 
-void rgb_update(uint8_t blockMask) {
+void gcm_update(uint8_t blockMask) {
   /*
   blockMask represents the current timing block length,
   i.e. 128, 64, 32, 16, 8, 4, 2, or 1.
@@ -100,12 +133,12 @@ void rgb_update(uint8_t blockMask) {
   digitalWrite(PIN_LATCH, HIGH);
 }
 
-void rgb_timerInterrupt() {
+void gcm_timerInterrupt() {
   bitCounter++;
   digitalWrite(PIN_LATCH, LOW);
   
   // If bitCounter is a power of 2
   if (bitCounter != 0 && (bitCounter & (bitCounter - 1)) == 0) {
-    rgb_update(bitCounter);
+    gcm_update(bitCounter);
   }
 }
