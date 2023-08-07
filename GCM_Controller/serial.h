@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Arduino.h>
 
 
-#define SERIAL_BAUDRATE 115200
+#define SERIAL_BAUDRATE 9600
 #define SERIAL_TIMEOUT 1000
 
 
