@@ -23,40 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This array contains the sector colors as 24-bit hex values
 // in order from top sector (0) to bottom sector (NUM_SECTORS - 1).
-uint32_t sectorColors[NUM_SECTORS] = {
-  0xFF0000,
-  0x800000,
-  0x400000,
-  0x200000,
-  0x100000,
-  0x00FF00,
-  0x008000,
-  0x004000,
-  0x002000,
-  0x001000,
-  0x0000FF,
-  0x000080,
-  0x000040,
-  0x000020,
-  0x000010,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000,
-  0x000000
-};
+uint32_t sectorColors[NUM_SECTORS] = { 0x000000 };
 
 // Default SPI settings
 static SPISettings spiSettings(4000000UL, LSBFIRST, SPI_MODE0);
